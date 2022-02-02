@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block homeactive %}
+active
+{% endblock homeactive %}
+{% block css %}
+<style>
+  #indexpage{
+    min-height: 90vh;
+  }
+</style>
+{% endblock css %}
+{% block body %}
+<div class="container-fluid px-0" id="indexpage">
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <!-- {% load static %} -->
+    <div class="carousel-item active ">
+      <img style="height: 20rem;" src="/static/img/slider1.jpg" class="d-block w-100" alt="Loading...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>This is my Second Website</h5>
+        <p>Here you can see the blog on coding</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/static/img/slider2.jpg" style="height: 20rem;" class="d-block w-100" alt="Loading...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Blog</h5>
+        <p>Thi is a blog Site</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/static/img/slider3.jpg" style="height: 20rem;"  class="d-block w-100" alt="Loading..."  >
+      <div class="carousel-caption d-none d-md-block">
+        <h5>language</h5>
+        <p>I am learning python</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<div class="container mt-3 mb-1" >
+<h4><p class="text text-center my-auto " style="font-size: larger;">Why to choose us ?</p>
+</h4>
+</div>
+<div class="container-fluid d-flex mt-3 d-flex align-items-md-stretch mx-auto mb-3 " style="max-width: 100vw;" >
+  <!-- <div class="container d-flex bg-danger align-items: center;"> -->
+    <div class="card mx-auto" style="width: 15rem;">
+      <img src="/static/img/Bestblogs.jpg" class="card-img-top" alt="Loading...">
+      <div class="card-body">
+        <h5 class="card-title text-center">Best Blogs</h5>
+        <p class="card-text">You can find best blogs and you can also create your own blogs. If you are beginner start your blog journey from This website.</p>
+      </div>
+    </div>
+  <!-- </div> -->
+  <!-- <div class="container bg-gradient"> -->
+    <div class="card mx-auto" style="width: 15rem;">
+      <img src="/static/img/freeblog.jpg" class="card-img-top" alt="Loading...">
+      <div class="card-body">
+        <h5 class="card-title text-center">Free Blogs</h5>
+        <p class="card-text">Here every service is free. You don't have to pay a single rupee to avail any service. Give words to your imagination without paying anything.</p>
+      </div>
+    </div>
+  <!-- </div> -->
+  <!-- <div class="container bg-light"> -->
+    <div class="card mx-auto " style="width: 15rem;">
+      <img src="/static/img/Amazingservices.jpg" class="card-img-top" alt="Loading...">
+      <div class="card-body">
+        <h5 class="card-title text-center">Amazing Services</h5>
+        <p class="card-text">Here you can create your own blogs. Easy to use our UI. Let's Explore our Website and give some feedback through contactUs</p>
+      </div>
+    </div>
+  <!-- </div> -->
+</div>
+</div>
+{% endblock body %}
+{% block title %}
+Home
+{% endblock title %}

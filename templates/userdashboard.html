@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block css %}
+<style>
+    #userdashboardpage{
+        min-height: 90vh;
+    }
+</style>
+{% endblock css %}
+{% block js %}
+<script>
+document.addEventListener("DOMContentLoaded",function(event){
+    
+    let sc = document.createElement('script')
+    sc.setAttribute('src','https://cdn.tiny.cloud/1/emq643qcamiiyvocmxoadu5io8cni00kbuz9himjg89l54v2/tinymce/5/tinymce.min.js');
+    document.head.appendChild(sc);
+    sc.onload=()=>{
+        tinymce.init({
+            selector: '#userblogtitle'
+        });
+        tinymce.init({
+            selector: '#userblogdescription'
+            
+        })
+        
+    }
+});
+    </script>
+{% endblock js %}
+{% block title %}
+Dashbord
+{% endblock title %}
+{% block body %}
+{% load humanize %}
+<div class="container"  id="userdashboardpage">
+    <div class="alert alert-success mt-2 " role="alert">
+        <h4 class="alert-heading">Welcome {{user.username}}!</h4>
+        <p>Welcome to this amazing blog website you can create you blog, that blog wil display in blog page. <br class="mb-1">
+            Some rules to write your blog:
+            <ul class="mt-1">
+                <li>Keep the slug same as your Title, it will help people to search your blog.</li>
+                <li>Give a short description, it will help to people know your blog right from  blog page.</li>
+            </ul>
+        </p>
+        <hr>
+        <p class="mb-0">Whenever you need or have any querry, Contact Us through contact page we will reply you soon.</p>
+    </div>
+    <h1 class="mt-4 text-primary">Create your own blog Here: </h1>
+    <form action="/createblog/" method="post">
+    {% csrf_token %}
+        <div class="mb-3 align-self-sm-center mt-3" id="userblogform" >
+            <label for="userblogtitle" class="form-label">Blog Title</label>
+            <input type="text" class="form-control" id="userblogtitle" name="userblogtitle">
+        </div>
+        <div class="mb-3">
+            <label for="userblogdescription" class="form-label">Blog Description</label>
+            <textarea class="form-control" id="userblogdescription" name="userblogdescription" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="userblogshortdescription" class="form-label">Blog Short Description</label>
+            <textarea class="form-control" id="userblogshortdescription" name="userblogshortdescription" rows="3"></textarea>
+        </div>
+        <div class="mb-3" >
+            <label for="userblogslug" class="form-label">Blog Slug</label>
+            <input type="text" class="form-control" id="userblogslug" name="userblogslug">
+        </div>
+        <button type="submit" class="btn btn-success px-4 my-2" >Post</button>
+    </form>
+    <h2 class="text-primary mt-4 mb-1">Your Blogs:-</h2><br>
+    <div class="container-fluid" id="bloghomepage">
+  <div class="row row-cols-1 row-cols-md-4  g-10 ">
+  {% for blog in blogs %}
+<div class="card-deck d-flex align mt-0 mb-2 mh-100 ">
+  <div class="card w-100" >
+    <img class="card-img-top" src="/static/img/coding{{forloop.counter}}.jpg" alt="Card image cap" height="242">
+    <div class="card-body">
+      <h5 class="card-title"><a href="/blogpost/{{blog.Slug}}" class="text-dark text-decoration-none">{{blog.Title|safe }}</a></h5>
+      <p class="card-text">{{blog.Short_Description}}.</p>
+    </div>
+    <div style="margin-left: 10px; margin-bottom: 10px;"><a href="/blogpost/{{blog.Slug}}" class="btn btn-primary">Read More ...</a></div>
+    <div class="card-footer">
+      <small class="text-muted">Released {{blog.Time | naturaltime}} by <b>{{blog.user.username}}</b></small>
+    </div>
+  </div>
+</div>
+  {% endfor %}
+</div>
+</div>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end my-1">
+  {% if prev %}
+  <a type="button " href="?page={{prev}}" class="text-light text-decoration-none bg-primary btn btn-primary me-md-2">&laquo; Prev</a>
+  {% else %}
+  <button class="btn btn-danger me-md-2" type="button" data-bs-toggle="popover" title="First page" data-bs-content="Oh sorry! This is the first page">&laquo; Prev</button>
+  {% endif %}
+  {% if next %}
+  <a href="?page={{next}}" type="button" class="text-light text-decoration-none btn btn-primary">Next &raquo;</a>
+  {% else %}
+  <button class="btn btn-danger" type="button" data-bs-toggle="popover" title="Last Page" data-bs-content="Congratulations! You habe read all the blogs">Next &raquo;</button>
+  <!-- <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button> -->
+  {% endif %}
+</div>
+</div>
+{% endblock body %}
